@@ -9,6 +9,7 @@ SDL_Renderer *renderer    = NULL;
 SDL_Texture *bmp_texture  = NULL;
 SDL_Texture *Background_texture = NULL;
 std::vector<Sprite*> spriteVector;
+std::vector<Actor*> actorVector;
 
 
 GameEngine::GameEngine(const char* title, int height, int width)
@@ -37,6 +38,12 @@ void GameEngine::add(Sprite* sprite)
 {
 	spriteVector.push_back(sprite);
 }
+void GameEngine::add(Actor* actor)
+{
+	spriteVector.push_back(actor);
+}
+
+
 void GameEngine::update()
 {
 	SDL_RenderClear(renderer);

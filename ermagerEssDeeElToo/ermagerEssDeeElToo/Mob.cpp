@@ -7,7 +7,9 @@ Mob::Mob(int posX, int posY, int textureHeight, int textureWidth, std::string pa
 
 }
 void Mob::Act()
-{}
+{
+	
+}
 Mob::~Mob()
 {
 

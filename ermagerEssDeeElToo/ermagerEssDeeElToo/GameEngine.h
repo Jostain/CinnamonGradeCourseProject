@@ -12,6 +12,7 @@ public:
 	void run();
 	void setBackground(std::string);
 	void add(Sprite* sprite);
+	void add(Actor* actor);
 	bool intersect(SDL_Rect);
 	void update();
 };
