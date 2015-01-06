@@ -3,7 +3,8 @@
 class Mob : public Actor
 {
 public:
-	Mob();
+	Mob(int, int , int , int , std::string);
+	void Act();
 	~Mob();
 };
 

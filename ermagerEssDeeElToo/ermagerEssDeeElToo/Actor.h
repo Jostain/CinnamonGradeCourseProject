@@ -3,6 +3,7 @@
 class Actor : public Sprite
 {
 public:
-	virtual void Act()=0;
+	Actor::Actor(int posX, int posY, int textureHeight, int textureWidth, std::string path);
+	virtual void Act() = 0;
 	~Actor();
 };
