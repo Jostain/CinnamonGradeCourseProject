@@ -3,7 +3,7 @@ Actor::Actor(int posX, int posY, int textureHeight, int textureWidth, std::strin
 {
 
 }
-void Act()
+void act()
 {
 
 }

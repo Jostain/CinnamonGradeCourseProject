@@ -44,6 +44,23 @@ SDL_Rect Sprite::getTexturePosition()
 {
 	return  DestR;
 }
+int Sprite::getX()
+{ 	
+	return X;
+};
+int Sprite::getY()
+{
+	return Y;
+};
+void Sprite::setX(int x)
+{
+	X= x;
+};
+void Sprite::setY(int y)
+{
+	Y = y;
+};
+
 
 
 

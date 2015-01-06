@@ -6,9 +6,10 @@ Mob::Mob(int posX, int posY, int textureHeight, int textureWidth, std::string pa
 {
 
 }
-void Mob::Act()
+void Mob::act()
 {
-	
+	setX(getX()+2);
+	setY(getY()+2);
 }
 Mob::~Mob()
 {

@@ -13,6 +13,7 @@ public:
 	void setBackground(std::string);
 	void add(Sprite* sprite);
 	void add(Actor* actor);
+	void actions();
 	bool intersect(SDL_Rect);
 	void update();
 };

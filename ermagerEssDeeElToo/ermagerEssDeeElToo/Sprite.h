@@ -9,6 +9,15 @@ public:
 	SDL_Surface* draw();
 	SDL_Rect getTextureSize();
 	SDL_Rect getTexturePosition();
+	int getX();
+	int getY();
+	void setX(int);
+	void setY(int);
+	
+	
+	
+	
+private:
 	int X = 0;
 	int Y = 0;
 	std::string imagePath = "c:/images/test.bmp";

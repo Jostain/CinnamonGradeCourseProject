@@ -4,7 +4,7 @@ class Mob : public Actor
 {
 public:
 	Mob(int, int , int , int , std::string);
-	void Act();
+	void act();
 	~Mob();
 };
 

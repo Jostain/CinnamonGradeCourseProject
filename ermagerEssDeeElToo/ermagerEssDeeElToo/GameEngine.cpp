@@ -40,10 +40,19 @@ void GameEngine::add(Sprite* sprite)
 }
 void GameEngine::add(Actor* actor)
 {
+	actorVector.push_back(actor);
 	spriteVector.push_back(actor);
 }
 
-
+void GameEngine::actions()
+{
+	int nextActor = 0;
+	while (nextActor < actorVector.size())
+	{
+		actorVector[nextActor]->act();
+		nextActor++;
+	}
+}
 void GameEngine::update()
 {
 	SDL_RenderClear(renderer);
@@ -80,6 +89,7 @@ void GameEngine::run()
 				break;
 			}
 		}
+		actions();
 		update();
 	}
 }
