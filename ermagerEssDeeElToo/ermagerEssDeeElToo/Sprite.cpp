@@ -20,6 +20,7 @@ Sprite::Sprite(int posX, int posY, int textureHeight, int textureWidth, std::str
 	DestR.y = Y;
 	DestR.w = textureHeight;
 	DestR.h = textureWidth;
+	
 }
 
 
@@ -27,22 +28,20 @@ Sprite::~Sprite()
 {
 }
 
-SDL_Surface* Sprite::draw()
+void Sprite::draw(SDL_Renderer *renderer)
 {
+
 	DestR.x = X;
 	DestR.y = Y;
 	DestR.w = sizeX;
 	DestR.h = sizeY;
-	SDL_Surface *bmp_surface = SDL_LoadBMP(imagePath.c_str());
-	return bmp_surface;
-}
-SDL_Rect Sprite::getTextureSize()
-{
-	return SrcR;
-}
-SDL_Rect Sprite::getTexturePosition()
-{
-	return  DestR;
+	
+	SDL_Surface* bmp_surface = SDL_LoadBMP(imagePath.c_str());//leak
+	spriteTexture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
+	SDL_FreeSurface(bmp_surface);
+	SDL_RenderCopy(renderer, spriteTexture, &SrcR, &DestR);
+	
+
 }
 int Sprite::getX()
 { 	

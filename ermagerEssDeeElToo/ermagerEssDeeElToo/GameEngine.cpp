@@ -6,7 +6,6 @@
 
 SDL_Window *window        = NULL;
 SDL_Renderer *renderer    = NULL;
-SDL_Texture *bmp_texture  = NULL;
 SDL_Texture *Background_texture = NULL;
 std::vector<Sprite*> spriteVector;
 std::vector<Actor*> actorVector;
@@ -59,14 +58,9 @@ void GameEngine::update()
 	SDL_RenderCopy(renderer, Background_texture, NULL, NULL);
 	int nextSprite = 0;
 	while (nextSprite < spriteVector.size())
-	{
-				
-		SDL_Surface *bmp_surface = spriteVector[nextSprite]->draw();
-		bmp_texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
-		SDL_FreeSurface(bmp_surface);
-		SDL_RenderCopy(renderer, bmp_texture, &spriteVector[nextSprite]->getTextureSize(), &spriteVector[nextSprite]->getTexturePosition());
+	{	
+		spriteVector[nextSprite]->draw(renderer);
 		nextSprite++;
-		
 	}
 	SDL_RenderPresent(renderer);
 

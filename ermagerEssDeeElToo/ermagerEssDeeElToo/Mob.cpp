@@ -8,8 +8,8 @@ Mob::Mob(int posX, int posY, int textureHeight, int textureWidth, std::string pa
 }
 void Mob::act()
 {
-	setX(getX()+2);
-	setY(getY()+2);
+	setX(getX()+1);
+	setY(getY()+1);
 }
 Mob::~Mob()
 {
