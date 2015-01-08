@@ -5,9 +5,9 @@
 
 int main(int argc, char** argv){
 	
-	GameEngine* gameEngine = new GameEngine("Test", 800, 600);
-	gameEngine->setBackground("c:/images/BG.bmp");
-	gameEngine->setSpriteSheet("c:/images/test.bmp");
+	GameEngine* GE = new GameEngine("Test", 800, 600);
+	GE->setBackground("c:/images/BG.bmp");
+	GE->setSpriteSheet("c:/images/test.bmp");
 	
 	Mob* mob = new Mob(0, 0, 32, 32);
 	Mob* mob2 = new Mob(65, 64, 64, 64);
@@ -36,34 +36,16 @@ int main(int argc, char** argv){
 	Mob* mob25 = new Mob(74, 64, 64, 64);
 	//Sprite* sprite = new Sprite(posX, posY, texturePosX, texturePosY, "c:/images/test.bmp");
 	
-	gameEngine->add(mob);
-	gameEngine->add(mob2);
-	gameEngine->add(mob3);
-	gameEngine->add(mob4);
-	gameEngine->add(mob5);
-	gameEngine->add(mob6);
-	gameEngine->add(mob7);
-	gameEngine->add(mob8);
-	gameEngine->add(mob9);
-	gameEngine->add(mob10);
-	gameEngine->add(mob11);
-	gameEngine->add(mob12);
-	gameEngine->add(mob13);
-	gameEngine->add(mob14);
-	gameEngine->add(mob15);
-	gameEngine->add(mob16);
-	gameEngine->add(mob17);
-	gameEngine->add(mob18);
-	gameEngine->add(mob19);
-	gameEngine->add(mob20);
-	gameEngine->add(mob21);
-	gameEngine->add(mob22);
-	gameEngine->add(mob23);
-	gameEngine->add(mob24);
-	gameEngine->add(mob25);
-	//remove middle one
-	gameEngine->run();
+	GE->add(mob);
+	GE->add(mob2);
+	GE->add(mob3);
+	GE->add(mob4);
+	GE->add(mob5);
+	GE->add(mob6);
 	
-	delete gameEngine;
+	//remove middle one
+	GE->run();
+	
+	delete GE;
 	return 0;
 }

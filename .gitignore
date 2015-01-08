@@ -57,3 +57,5 @@ ermagerEssDeeElToo/ermagerEssDeeElToo/space_wallpaper_hd1.jpg
 *.vcxproj
 *.vcxproj
 ermagerEssDeeElToo/ermagerEssDeeElToo/ermagerEssDeeElToo.vcxproj
+ermagerEssDeeElToo/ermagerEssDeeElToo/FPScounter.cpp
+ermagerEssDeeElToo/ermagerEssDeeElToo/FPScounter.h

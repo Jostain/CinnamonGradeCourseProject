@@ -1,8 +1,8 @@
 #include "GameEngine.h"
-#include <vector>
 #include <sstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 
 
@@ -51,6 +51,7 @@ void GameEngine::add(Sprite* sprite)
 }
 void GameEngine::add(Actor* actor)
 {
+	actor->connectToEngine();
 	actorVector.push_back(actor);
 	spriteVector.push_back(actor);
 }
@@ -116,9 +117,12 @@ void GameEngine::run()
 				break;
 			}
 		}
-		actions();
-		update();
 		
+		actions();//utför alla act metoder hos alla actors
+		update();//måla ut alla sprites som finns
+		
+		
+		//Frames Per Second kontroll.
 		int tick = SDL_GetTicks() - begining;
 		
 		while (tick < 33)

@@ -3,9 +3,9 @@ Actor::Actor(int posX, int posY, int textureHeight, int textureWidth) : Sprite(p
 {
 
 }
-void act()
+void Actor::connectToEngine()
 {
-
+	
 }
 Actor::~Actor()
 {

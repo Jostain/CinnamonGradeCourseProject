@@ -5,6 +5,8 @@
 #include "Sprite.h"
 #include "Actor.h"
 #include <SDL_ttf.h>
+#include <vector>
+
 class GameEngine
 {
 public:
@@ -20,6 +22,11 @@ public:
 	void actions();
 	bool intersect(SDL_Rect);
 	void update();
+	int getMouseX();//needs implementation
+	int getMouseY();//needs implementation
+	std::vector<Actor*> intersect(GameEngine* gameEngine);//needs implementation
+
+
 };
 
 
