@@ -12,6 +12,7 @@ public:
 
 	~GameEngine();
 	void run();
+	std::string convertInt(int number);
 	void setBackground(std::string);
 	void setSpriteSheet(std::string path);
 	void add(Sprite* sprite);

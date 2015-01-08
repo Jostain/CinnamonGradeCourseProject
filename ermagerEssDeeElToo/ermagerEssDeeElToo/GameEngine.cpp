@@ -1,5 +1,10 @@
-#include "Main.h"
+#include "GameEngine.h"
 #include <vector>
+#include <sstream>
+#include <iostream>
+#include <string>
+
+
 
 
 
@@ -8,23 +13,28 @@ SDL_Window *window        = NULL;
 SDL_Renderer *renderer    = NULL;
 SDL_Texture *Background_texture = NULL;
 SDL_Texture *spriteSheet_texture = NULL;
-TTF_Font *gFont = NULL;
+SDL_Texture *FPStexture = NULL;
+TTF_Font *FPSFont = NULL;
+SDL_Color FPSColor = { 0, 0, 0 };
 std::vector<Sprite*> spriteVector;
 std::vector<Actor*> actorVector;
+int FPS;
 
 
 GameEngine::GameEngine(const char* title, int height, int width)
 {
-	// Innan vi använder biblioteket så måste det initialiseras.
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+	if (TTF_Init() != 0)
+	{
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
-		//return 1;
+	}
+	// Innan vi använder biblioteket så måste det initialiseras.
+	if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
+		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 	}
 
 	window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, height, width, SDL_WINDOW_SHOWN);
 	if (window == nullptr){
 		std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
-		//return 1;
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -32,8 +42,8 @@ GameEngine::GameEngine(const char* title, int height, int width)
 		SDL_DestroyWindow(window);
 		std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
-		//return 1;
 	}
+	FPSFont = TTF_OpenFont("c:/images/dirtyheadline.ttf", 128);
 }
 void GameEngine::add(Sprite* sprite)
 {
@@ -58,6 +68,24 @@ void GameEngine::update()
 {
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, Background_texture, NULL, NULL);
+	SDL_Rect dimension;
+	SDL_Rect position;
+	dimension.x = 0;
+	dimension.y = 0;
+	dimension.w = 32;
+	dimension.h = 32;
+
+	//position.x = X;
+	//position.y = Y;
+	//position.w = textureHeight;
+	//position.h = textureWidth;
+	std::string FPS_string = static_cast<std::ostringstream*>(&(std::ostringstream() << FPS))->str();
+	SDL_Surface* FPSSurface = TTF_RenderText_Solid(FPSFont, FPS_string.c_str(), FPSColor);//<--Exception
+	FPStexture = SDL_CreateTextureFromSurface(renderer, FPSSurface);
+	SDL_FreeSurface(FPSSurface);
+	SDL_RenderCopy(renderer, FPStexture, NULL, &dimension);
+	SDL_DestroyTexture(FPStexture);
+
 	int nextSprite = 0;
 	while (nextSprite < spriteVector.size())
 	{	
@@ -68,8 +96,8 @@ void GameEngine::update()
 
 }
 void GameEngine::run()
-{
-	
+{	
+	int frame = 0;
 	bool program_is_running = true;
 	while (program_is_running)
 	{
@@ -90,7 +118,21 @@ void GameEngine::run()
 		}
 		actions();
 		update();
-		int result = SDL_GetTicks() - begining;
+		
+		int tick = SDL_GetTicks() - begining;
+		
+		while (tick < 33)
+		{
+			tick = SDL_GetTicks() - begining;
+		}
+		frame++;
+		if (frame = 30)
+		{
+			FPS = SDL_GetTicks() - begining;
+			frame = 0;
+		}
+		
+		
 	}
 }
 void GameEngine::setBackground(std::string path)
@@ -108,7 +150,12 @@ void GameEngine::setSpriteSheet(std::string path)
 	SDL_FreeSurface(bmp_surface);
 }
 
-
+std::string convertInt(int number)
+{
+	std::stringstream ss;//create a stringstream
+	ss << number;//add number to the stream
+	return ss.str();//return a string with the contents of the stream
+}
 GameEngine::~GameEngine()
 
 {

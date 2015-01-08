@@ -30,6 +30,9 @@
     <ClCompile Include="Mob.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FPScounter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mob.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FPScounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
