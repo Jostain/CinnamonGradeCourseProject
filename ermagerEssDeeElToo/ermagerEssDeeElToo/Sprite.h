@@ -4,7 +4,7 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(int posX, int posY, int textureHeight, int textureWidth, std::string path);
+	Sprite(int posX, int posY, int textureHeight, int textureWidth);
 	~Sprite();
 	void draw(SDL_Renderer *renderer);
 	SDL_Rect getTextureSize();
@@ -13,6 +13,8 @@ public:
 	int getY();
 	void setX(int);
 	void setY(int);
+	SDL_Rect getDimension();
+	SDL_Rect Sprite::getPosition();
 	
 	
 	
@@ -20,11 +22,10 @@ public:
 private:
 	int X = 0;
 	int Y = 0;
-	std::string imagePath;
 	int sizeX = 64;
 	int sizeY = 64;
-	SDL_Rect SrcR;
-	SDL_Rect DestR;
+	SDL_Rect dimension;
+	SDL_Rect position;
 	SDL_Texture *spriteTexture = NULL;
 
 	bool once = false;

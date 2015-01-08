@@ -3,7 +3,7 @@
 class Mob : public Actor
 {
 public:
-	Mob(int, int , int , int , std::string);
+	Mob(int, int , int , int);
 	void act();
 	~Mob();
 };

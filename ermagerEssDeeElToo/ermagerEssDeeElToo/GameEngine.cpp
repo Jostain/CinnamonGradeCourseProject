@@ -7,6 +7,8 @@
 SDL_Window *window        = NULL;
 SDL_Renderer *renderer    = NULL;
 SDL_Texture *Background_texture = NULL;
+SDL_Texture *spriteSheet_texture = NULL;
+TTF_Font *gFont = NULL;
 std::vector<Sprite*> spriteVector;
 std::vector<Actor*> actorVector;
 
@@ -59,7 +61,7 @@ void GameEngine::update()
 	int nextSprite = 0;
 	while (nextSprite < spriteVector.size())
 	{	
-		spriteVector[nextSprite]->draw(renderer);
+		SDL_RenderCopy(renderer, spriteSheet_texture, &spriteVector[nextSprite]->getDimension(), &spriteVector[nextSprite]->getPosition());
 		nextSprite++;
 	}
 	SDL_RenderPresent(renderer);
@@ -67,12 +69,15 @@ void GameEngine::update()
 }
 void GameEngine::run()
 {
+	
 	bool program_is_running = true;
 	while (program_is_running)
 	{
+		int begining = SDL_GetTicks();
 		SDL_Event event;	// Skapa en händelselyssnare
 		while (SDL_PollEvent(&event))	// Hämtar nästa event i event-kön, annars returneras 0.
 		{
+			
 			switch (event.type) {
 			case SDL_KEYDOWN:
 				if (event.key.keysym.sym == SDLK_ESCAPE)
@@ -85,6 +90,7 @@ void GameEngine::run()
 		}
 		actions();
 		update();
+		int result = SDL_GetTicks() - begining;
 	}
 }
 void GameEngine::setBackground(std::string path)
@@ -92,6 +98,13 @@ void GameEngine::setBackground(std::string path)
 	std::string imagePath = path;
 	SDL_Surface *bmp_surface = SDL_LoadBMP(imagePath.c_str());
 	Background_texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
+	SDL_FreeSurface(bmp_surface);
+}
+void GameEngine::setSpriteSheet(std::string path)
+{
+	std::string imagePath = path;
+	SDL_Surface *bmp_surface = SDL_LoadBMP(imagePath.c_str());
+	spriteSheet_texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
 	SDL_FreeSurface(bmp_surface);
 }
 
