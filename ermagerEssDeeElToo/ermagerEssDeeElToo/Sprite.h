@@ -1,5 +1,7 @@
-#pragma once
-#include "GameEngine.h"
+#ifndef SPRITE_H
+#define SPRITE_H
+#include <SDL.h>
+//#include "GameEngine.h"
 class Sprite
 {
 public:
@@ -31,3 +33,4 @@ private:
 	bool once = false;
 };
 
+#endif

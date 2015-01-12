@@ -1,11 +1,12 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 #include "Actor.h"
-
-class Player:public Actor
+class Player : public Actor
 {
 public:
-	Player();
-	void OverrideMe();
+	Player(int, int, int, int);
+	void act();
 	~Player();
 };
 
+#endif

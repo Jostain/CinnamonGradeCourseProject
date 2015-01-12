@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include "Actor.h"
 
 
 
@@ -18,6 +18,8 @@ TTF_Font *FPSFont = NULL;
 SDL_Color FPSColor = { 0, 0, 0 };
 std::vector<Sprite*> spriteVector;
 std::vector<Actor*> actorVector;
+
+
 int FPS;
 
 
@@ -45,13 +47,13 @@ GameEngine::GameEngine(const char* title, int height, int width)
 	}
 	FPSFont = TTF_OpenFont("c:/images/dirtyheadline.ttf", 128);
 }
-void GameEngine::add(Sprite* sprite)
+void GameEngine::add(Sprite* sprite, GameEngine* GE)
 {
 	spriteVector.push_back(sprite);
 }
-void GameEngine::add(Actor* actor)
+void GameEngine::add(Actor* actor, GameEngine* GE)
 {
-	actor->connectToEngine();
+	actor->connectToEngine(GE);
 	actorVector.push_back(actor);
 	spriteVector.push_back(actor);
 }
@@ -108,9 +110,38 @@ void GameEngine::run()
 		{
 			
 			switch (event.type) {
+
 			case SDL_KEYDOWN:
 				if (event.key.keysym.sym == SDLK_ESCAPE)
-					program_is_running = false;
+					//program_is_running = false;
+				break;
+				if (event.key.keysym.sym == SDLK_UP)
+					up = true;
+				//break;
+				if (event.key.keysym.sym == SDLK_DOWN)
+					down = true;
+				//break;
+				if (event.key.keysym.sym == SDLK_RIGHT)
+					right = true;
+				//break;
+				if (event.key.keysym.sym == SDLK_LEFT)
+					left = true;
+				break;
+			case SDL_KEYUP:
+				if (event.key.keysym.sym == SDLK_ESCAPE)
+					//program_is_running = false;
+					break;
+				if (event.key.keysym.sym == SDLK_UP)
+					up = false;
+				//break;
+				if (event.key.keysym.sym == SDLK_DOWN)
+					down = false;
+				//break;
+				if (event.key.keysym.sym == SDLK_RIGHT)
+					right = false;
+				//break;
+				if (event.key.keysym.sym == SDLK_LEFT)
+					left = false;
 				break;
 			case SDL_QUIT:
 				program_is_running = false;
@@ -118,7 +149,7 @@ void GameEngine::run()
 			}
 		}
 		
-		actions();//utför alla act metoder hos alla actors
+		actions();// act metod hos alla actors
 		update();//måla ut alla sprites som finns
 		
 		
