@@ -7,7 +7,7 @@
 class Actor : public Sprite
 {
 public:
-	GameEngine* gameEngine;
+	GameEngine* gameEngine = NULL;
 	Actor::Actor(int posX, int posY, int textureHeight, int textureWidth);
 	virtual void act() = 0;
 	void connectToEngine(GameEngine* GE);
@@ -18,7 +18,12 @@ public:
 	bool getDown(){ return gameEngine->getDown(); }
 	bool getRight(){ return gameEngine->getRight(); }
 	bool getLeft(){ return gameEngine->getLeft(); }
-	~Actor();
+	int getTeam(){ return team; }
+	void setTeam(int newTeam){ team = newTeam; }
 
+	~Actor();
+private:
+	int team = 0;
+	
 };
 #endif

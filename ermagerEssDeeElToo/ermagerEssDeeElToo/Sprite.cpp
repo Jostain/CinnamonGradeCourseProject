@@ -3,6 +3,9 @@
 
 Sprite::Sprite()
 {
+	id = nextID;
+	nextID++;
+
 }
 Sprite::Sprite(int posX, int posY, int textureHeight, int textureWidth)
 {
@@ -10,10 +13,10 @@ Sprite::Sprite(int posX, int posY, int textureHeight, int textureWidth)
 	Y = posY;
 	sizeX = textureHeight;
 	sizeY = textureWidth;
-	dimension.x = 0;
-	dimension.y = 0;
-	dimension.w = textureHeight;
-	dimension.h = textureWidth;
+	sprite.x = 0;
+	sprite.y = 0;
+	sprite.w = textureHeight;
+	sprite.h = textureWidth;
 
 	position.x = X;
 	position.y = Y;
@@ -27,10 +30,6 @@ Sprite::~Sprite()
 {
 }
 
-void Sprite::draw(SDL_Renderer *renderer)
-{
-
-}
 int Sprite::getX()
 { 	
 	return X;
@@ -47,9 +46,16 @@ void Sprite::setY(int y)
 {
 	Y = y;
 };
-SDL_Rect Sprite::getDimension()
+void Sprite::setSprite(int x, int y, int posX, int posY)
 {
-	return dimension;
+	sprite.x = x;
+	sprite.y = y;
+	sprite.w = posX;
+	sprite.h = posY;
+}
+SDL_Rect Sprite::getSprite()
+{
+	return sprite;
 };
 SDL_Rect Sprite::getPosition()
 {

@@ -10,18 +10,11 @@ void Actor::connectToEngine(GameEngine* GE)
 {
 	gameEngine = GE;
 }
-
-
-std::vector<Actor*> Actor::intersect()
-{
-	std::vector<Actor*> intersections;
-	
-	SDL_bool SDL_IntersectRect(const SDL_Rect* A, const SDL_Rect* B);
-	
-	return intersections;
-}
 Actor::~Actor()
 {
-
+	if (gameEngine != NULL)
+	{
+		
+	}
 }
 

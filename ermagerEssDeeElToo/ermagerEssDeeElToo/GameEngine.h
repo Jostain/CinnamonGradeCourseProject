@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_image.h>
 #include <vector>
 class Sprite;
 class Actor;
@@ -18,12 +19,14 @@ public:
 	void setSpriteSheet(std::string path);
 	void add(Sprite* sprite, GameEngine* GE);
 	void add(Actor* actor, GameEngine* GE);
+	void removeSprite(int);
+	void removeActor(int);
 	void actions();
-	bool intersect(SDL_Rect);
 	void update();
-	int getMouseX();//needs implementation
-	int getMouseY();//needs implementation
-	std::vector<Actor*> intersect(GameEngine* gameEngine);//needs implementation
+	
+	std::vector<Actor*> intersections(SDL_Rect);//needs implementation
+	
+	bool intersect(SDL_Rect a, SDL_Rect b);
 	bool getUp(){ return up; }
 	bool getDown(){ return down; }
 	bool getRight(){ return right; }

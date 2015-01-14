@@ -10,19 +10,23 @@ void Player::act()
 	;
 	if (getRight() == true)
 	{
-		setX(getX() + 2);
+		setX(getX() + 3);
+		setSprite(32, 0, 32, 32);
 	}
 	if (getLeft() == true)
 	{
-		setX(getX() - 2);
+		setX(getX() - 3);
+		setSprite(32, 32, 32, 32);
 	}
 	if (getUp() == true)
 	{
-		setY(getY() - 2);
+		setY(getY() - 3);
+		setSprite(0, 32, 32, 32);
 	}
 	if (getDown() == true)
 	{
-		setY(getY() + 2);
+		setY(getY() + 3);
+		setSprite(0, 0, 32, 32);
 	}
 }
 Player::~Player()

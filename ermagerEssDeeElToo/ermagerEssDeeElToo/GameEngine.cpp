@@ -57,6 +57,29 @@ void GameEngine::add(Actor* actor, GameEngine* GE)
 	actorVector.push_back(actor);
 	spriteVector.push_back(actor);
 }
+void GameEngine::removeSprite(int sprite)
+{
+	int nextSprite = 0;
+	while (nextSprite < actorVector.size())
+	{
+		if (spriteVector[nextSprite]->getID() == sprite)
+			spriteVector.erase(spriteVector.begin() + nextSprite - 1);
+			
+		nextSprite++;
+	}
+}
+void GameEngine::removeActor(int actor)
+{
+	int nextActor = 0;
+	while (nextActor < actorVector.size())
+	{
+		if (spriteVector[nextActor]->getID() == actor)
+			actorVector.erase(actorVector.begin() + nextActor - 1);
+
+		nextActor++;
+	}
+
+}
 
 void GameEngine::actions()
 {
@@ -92,7 +115,7 @@ void GameEngine::update()
 	int nextSprite = 0;
 	while (nextSprite < spriteVector.size())
 	{	
-		SDL_RenderCopy(renderer, spriteSheet_texture, &spriteVector[nextSprite]->getDimension(), &spriteVector[nextSprite]->getPosition());
+		SDL_RenderCopy(renderer, spriteSheet_texture, &spriteVector[nextSprite]->getSprite(), &spriteVector[nextSprite]->getPosition());
 		nextSprite++;
 	}
 	SDL_RenderPresent(renderer);
@@ -173,15 +196,16 @@ void GameEngine::run()
 void GameEngine::setBackground(std::string path)
 {
 	std::string imagePath = path;
-	SDL_Surface *bmp_surface = SDL_LoadBMP(imagePath.c_str());
+	SDL_Surface *bmp_surface = IMG_Load(imagePath.c_str());
 	Background_texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
 	SDL_FreeSurface(bmp_surface);
 }
 void GameEngine::setSpriteSheet(std::string path)
 {
 	std::string imagePath = path;
-	SDL_Surface *bmp_surface = SDL_LoadBMP(imagePath.c_str());
+	SDL_Surface *bmp_surface = IMG_Load(imagePath.c_str());
 	spriteSheet_texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
+
 	SDL_FreeSurface(bmp_surface);
 }
 
@@ -190,6 +214,67 @@ std::string convertInt(int number)
 	std::stringstream ss;//create a stringstream
 	ss << number;//add number to the stream
 	return ss.str();//return a string with the contents of the stream
+}
+std::vector<Actor*> GameEngine::intersections(SDL_Rect sprite)
+{
+	std::vector<Actor*> intesectionsVector;
+	int nextActor = 0;
+	while (nextActor < actorVector.size())
+	{
+		SDL_Rect position = actorVector[nextActor]->getPosition();
+		if (intersect(sprite, position))
+		{
+			intesectionsVector.push_back(actorVector[nextActor]);
+		}
+		nextActor++;
+	}
+	return intesectionsVector;
+}
+bool GameEngine::intersect(SDL_Rect a, SDL_Rect b)
+{
+	//The sides of the rectangles
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	//Calculate the sides of rect A
+	leftA = a.x;
+	rightA = a.x + a.w;
+	topA = a.y;
+	bottomA = a.y + a.h;
+
+	//Calculate the sides of rect B
+	leftB = b.x;
+	rightB = b.x + b.w;
+	topB = b.y;
+	bottomB = b.y + b.h;
+
+	//If any of the sides from A are outside of B
+	if (bottomA <= topB)
+	{
+		return false;
+	}
+
+	if (topA >= bottomB)
+	{
+		return false;
+	}
+
+	if (rightA <= leftB)
+	{
+		return false;
+	}
+
+	if (leftA >= rightB)
+	{
+		return false;
+	}
+
+	//If none of the sides from A are outside B
+	return true;
+
+	std::vector<Actor*> intersectVector; 
 }
 GameEngine::~GameEngine()
 

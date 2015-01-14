@@ -56,8 +56,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Joakim\Documents\GitHub Repository\CinnamonGradeCourseProject\SDL2_ttf-2.0.12\include;C:\Users\Erik\Desktop\CinnamonGradeCourseProject\SDL2_ttf-2.0.12\include;C:\VC dev\include;C:\Users\Erik\Downloads\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\SDL2\include;C:\Users\Erik\Downloads\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Joakim\Documents\GitHub Repository\CinnamonGradeCourseProject\SDL2_ttf-2.0.12\lib\x86;C:\Users\Erik\Desktop\CinnamonGradeCourseProject\SDL2_ttf-2.0.12\lib\x86;C:\VC dev\lib\x86;C:\Users\Erik\Downloads\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;C:\SDL2\lib\x86;C:\Users\Erik\Downloads\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Erik\Downloads\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;C:\Users\Erik\Downloads\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\Users\Joakim\Documents\GitHub Repository\CinnamonGradeCourseProject\SDL2_ttf-2.0.12\include;C:\Users\Erik\Desktop\CinnamonGradeCourseProject\SDL2_ttf-2.0.12\include;C:\VC dev\include;C:\SDL2\include;C:\Users\Erik\Downloads\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Erik\Downloads\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;C:\Users\Erik\Downloads\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib;C:\Users\Joakim\Documents\GitHub Repository\CinnamonGradeCourseProject\SDL2_ttf-2.0.12\lib\x86;C:\Users\Erik\Desktop\CinnamonGradeCourseProject\SDL2_ttf-2.0.12\lib\x86;C:\VC dev\lib\x86;C:\Users\Erik\Downloads\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;C:\SDL2\lib\x86;C:\Users\Erik\Downloads\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -67,7 +67,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>

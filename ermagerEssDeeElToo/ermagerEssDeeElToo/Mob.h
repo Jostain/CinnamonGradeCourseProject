@@ -4,8 +4,9 @@
 class Mob : public Actor
 {
 public:
-	Mob(int, int , int , int);
+	Mob(int, int);
 	void act();
+	void checkCollision();
 	~Mob();
 };
 
