@@ -44,7 +44,7 @@ void Player2::checkCollision()
 	int nextActor = 0;
 	while (nextActor < collideVector.size())
 	{
-		if (collideVector[nextActor]->getTeam() == 0)
+		if (collideVector[nextActor]->getTeam() != 1)
 		{
 			gameEngine->removeActor(getID());
 			delete this;

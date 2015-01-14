@@ -6,8 +6,9 @@ class Mob : public Actor
 public:
 	Mob(int, int);
 	void act();
-	void checkCollision();
 	~Mob();
+private:
+	bool goingUp = true;
 };
 
 #endif

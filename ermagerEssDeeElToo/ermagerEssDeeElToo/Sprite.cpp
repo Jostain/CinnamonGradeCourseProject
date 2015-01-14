@@ -1,5 +1,8 @@
 #include "Sprite.h"
 #include <iostream>
+
+/*Det object som alla actors sedan baseras på. endast en sprite kan användas som en dekal men kan inte interageras med på något sätt i motorn*/
+
 int Sprite::objectCount = 0;//statisk variabel som avänds för att ge ett unikt id till alla sprites som skapas för att sedan kunna användas för identifikation i olika metoder.
 Sprite::Sprite(int posX, int posY, int textureHeight, int textureWidth)
 {
@@ -15,11 +18,11 @@ Sprite::Sprite(int posX, int posY, int textureHeight, int textureWidth)
 	position.h = textureWidth;
 	
 }
-Sprite::~Sprite()//standard destruktor
+//standard destruktor
+Sprite::~Sprite()
 {
 }
-
-/**/
+/*sätter formen på spriten och vart på sprite sheetet som texturen skall hämtas där x och y är storlek och posX och posY är texturen position*/
 void Sprite::setSprite(int x, int y, int posX, int posY)
 {
 	sprite.x = x;
@@ -27,10 +30,7 @@ void Sprite::setSprite(int x, int y, int posX, int posY)
 	sprite.w = posX;
 	sprite.h = posY;
 }
-SDL_Rect Sprite::getSprite()
-{
-	return sprite;
-};
+/*returnerar en rect som beskriver vart en sprite skall målas på skärmen*/
 SDL_Rect Sprite::getPosition()
 {
 	position.x = X;

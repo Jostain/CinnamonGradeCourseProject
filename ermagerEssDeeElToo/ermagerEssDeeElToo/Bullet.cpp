@@ -32,7 +32,7 @@ void Bullet::act()
 	life--;
 	if (life == 0)
 	gameEngine->removeActor(getID());
-	//checkCollision();
+	checkCollision();
 }
 void Bullet::checkCollision()
 {
@@ -40,7 +40,7 @@ void Bullet::checkCollision()
 	int nextActor = 0;
 	while (nextActor < collideVector.size())
 	{
-		if (collideVector[nextActor]->getTeam() != getTeam())
+		if (collideVector[nextActor]->getTeam() == 4)
 		{
 			gameEngine->removeActor(getID());
 			//gameEngine->end();
