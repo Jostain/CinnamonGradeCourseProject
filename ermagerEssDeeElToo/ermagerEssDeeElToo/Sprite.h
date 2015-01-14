@@ -5,17 +5,16 @@
 class Sprite
 {
 public:
-	static int objectCount;
-	Sprite();
-	Sprite(int, int, int, int textureWidth);
-	~Sprite();
-	void draw(SDL_Renderer *renderer);
-	SDL_Rect getTextureSize();
-	SDL_Rect getTexturePosition();
-	int getX();
-	int getY();
-	void setX(int);
-	void setY(int);
+	static int objectCount;//statisk variabel som avänds för att ge ett unikt id till alla sprites som skapas för att sedan kunna användas för identifikation i olika metoder.
+	
+	Sprite(int, int, int, int);//tilldelar Sprite ett unikt id.
+	~Sprite();//standard destruktor
+
+	//getters och setters
+	int Sprite::getX(){ return X; }
+	int Sprite::getY(){ return Y; }
+	void Sprite::setX(int x){ X = x; }
+	void Sprite::setY(int y){ Y = y; }
 	SDL_Rect getSprite();
 	SDL_Rect getPosition();
 	void setSprite(int, int, int, int);
@@ -26,16 +25,15 @@ public:
 	
 	
 private:
-	int id = 0;
-	int X = 0;
-	int Y = 0;
-	int sizeX = 64;
-	int sizeY = 64;
+	int id;
+	int X;
+	int Y;
+	int sizeX;
+	int sizeY;
 	SDL_Rect sprite;
 	SDL_Rect position;
-	SDL_Texture *spriteTexture = NULL;
-
 	bool once = false;
+
 };
 
 #endif

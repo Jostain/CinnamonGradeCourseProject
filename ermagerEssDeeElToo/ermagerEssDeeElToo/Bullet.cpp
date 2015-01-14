@@ -1,32 +1,53 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet(int posX, int posY, int textureHeight, int textureWidth) : Actor(posX, posY, textureHeight, textureWidth)
+Bullet::Bullet(int posX, int posY, int textureHeight, int textureWidth, int direction, int team) : Actor(posX, posY, 6, 6)
+
 {
-	setSprite(32, 0, 16, 16);
+	setTeam(team);
+	setSprite(128, 0,6,6);
+	currentDirection = direction;
+	std::cout << currentDirection << std::endl;
 }
 void Bullet::act()
 {
-	;
-	if (getRight() == true)
+	
+	if (currentDirection == 1)
 	{
-		setX(getX() + 3);
-		//setSprite(32, 0, 32, 32);
+		setX(getX() + 10);
 	}
-	if (getLeft() == true)
+	if (currentDirection == 3)
 	{
-		setX(getX() - 3);
-		//setSprite(32, 32, 32, 32);
+		setX(getX() - 10);	
 	}
-	if (getUp() == true)
+	if (currentDirection == 0)
 	{
-		setY(getY() - 3);
-		//setSprite(0, 32, 32, 32);
+		setY(getY() - 10);
 	}
-	if (getDown() == true)
+	if (currentDirection == 2)
 	{
-		setY(getY() + 3);
-		//setSprite(0, 0, 32, 32);
+		setY(getY() + 10);
+	}
+	
+	life--;
+	if (life == 0)
+	gameEngine->removeActor(getID());
+	//checkCollision();
+}
+void Bullet::checkCollision()
+{
+	std::vector<Actor*> collideVector = getEngine()->intersections(getPosition());
+	int nextActor = 0;
+	while (nextActor < collideVector.size())
+	{
+		if (collideVector[nextActor]->getTeam() != getTeam())
+		{
+			gameEngine->removeActor(getID());
+			//gameEngine->end();
+			delete this;
+		}
+		nextActor++;
+
 	}
 }
 

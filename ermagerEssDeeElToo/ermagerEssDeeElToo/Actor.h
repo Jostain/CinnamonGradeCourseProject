@@ -14,10 +14,19 @@ public:
 	void disconnectfromEngine();
 	std::vector<Actor*> intersect();
 	GameEngine* Actor::getEngine(){return gameEngine;}
+	//player 1 contoller
 	bool getUp(){ return gameEngine->getUp(); }
 	bool getDown(){ return gameEngine->getDown(); }
 	bool getRight(){ return gameEngine->getRight(); }
 	bool getLeft(){ return gameEngine->getLeft(); }
+	bool getZero(){ return gameEngine->getZero(); }
+	
+	//player 2 controller
+	bool getW(){ return gameEngine->getW(); }
+	bool getS(){ return gameEngine->getS(); }
+	bool getD(){ return gameEngine->getD(); }
+	bool getA(){ return gameEngine->getA(); }
+	bool getSpace(){ return gameEngine->getSpace(); }
 	int getTeam(){ return team; }
 	void setTeam(int newTeam){ team = newTeam; }
 

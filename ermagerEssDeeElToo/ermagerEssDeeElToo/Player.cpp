@@ -1,35 +1,42 @@
 #include "Player.h"
+#include "Bullet.h"
 
 
-Player::Player(int posX, int posY, int textureHeight, int textureWidth) : Actor(posX, posY, textureHeight, textureWidth)
+Player::Player(int posX, int posY) : Actor(posX, posY, 32, 32)
 {
 	setTeam(0);
-	std::cout << getTeam();
+	setSprite(32, 0,32,32);
+	std::cout << getTeam() << std::endl;
 }
 void Player::act()
 {
-	;
 	if (getRight() == true)
 	{
 		setX(getX() + 3);
 		setSprite(32, 0, 32, 32);
+		direction = 1;
 	}
 	if (getLeft() == true)
 	{
 		setX(getX() - 3);
-		setSprite(32, 32, 32, 32);
+		setSprite(96, 0, 32, 32);
+		direction = 3;
 	}
 	if (getUp() == true)
 	{
 		setY(getY() - 3);
-		setSprite(0, 32, 32, 32);
+		setSprite(0, 0, 32, 32);
+		direction = 0;
 	}
 	if (getDown() == true)
 	{
 		setY(getY() + 3);
-		setSprite(0, 0, 32, 32);
+		setSprite(64, 0,32,32);
+		direction = 2;
 	}
+	PewPew();
 	checkCollision();
+	
 }
 void Player::checkCollision()
 {
@@ -37,17 +44,27 @@ void Player::checkCollision()
 	int nextActor = 0;
 	while (nextActor < collideVector.size())
 	{
-		if (collideVector[nextActor]->getTeam() != getTeam())
+		if (collideVector[nextActor]->getTeam() == 1)
 		{
-			std::cout << "test3" << std::endl;
 			gameEngine->removeActor(getID());
-			gameEngine->end();
-			std::cout << "test4" << std::endl;
+			//gameEngine->end();
 			delete this;
 		}
 		nextActor++;
 
 	}
+}
+void Player::PewPew()
+{
+	if(getZero() == true && cooldown == 0)
+	{
+		Bullet* bullet = new Bullet(getX() + 13, getY() + 13, 32, 32, direction, 0);
+		gameEngine->add(bullet, gameEngine);
+		cooldown = 10;
+	}
+	if (cooldown != 0)
+	cooldown--;
+	
 }
 Player::~Player()
 {

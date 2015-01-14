@@ -12,9 +12,5 @@ void Actor::connectToEngine(GameEngine* GE)
 }
 Actor::~Actor()
 {
-	if (gameEngine != NULL)
-	{
-		
-	}
 }
 

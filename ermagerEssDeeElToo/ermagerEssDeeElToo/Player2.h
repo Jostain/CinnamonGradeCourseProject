@@ -1,15 +1,15 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PLAYER2_H
+#define PLAYER2_H
 #include "Actor.h"
-class Player : public Actor
+class Player2 : public Actor
 {
 public:
-	Player(int, int);
+	Player2(int, int);
 	void act();
 	void checkCollision();
 	void PewPew();
 	void getDirection();
-	~Player();
+	~Player2();
 private:
 	int direction = 0;
 	int cooldown = 0;

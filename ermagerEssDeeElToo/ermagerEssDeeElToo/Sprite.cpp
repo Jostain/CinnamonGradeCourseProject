@@ -1,52 +1,25 @@
 #include "Sprite.h"
 #include <iostream>
-int Sprite::objectCount = 0;
-Sprite::Sprite()
-{
-	
-}
+int Sprite::objectCount = 0;//statisk variabel som avänds för att ge ett unikt id till alla sprites som skapas för att sedan kunna användas för identifikation i olika metoder.
 Sprite::Sprite(int posX, int posY, int textureHeight, int textureWidth)
 {
-	std::cout << objectCount;
-	id = objectCount;
-	objectCount++;
-	X = posX;
+	id = objectCount;//tilldelar Sprite ett unikt id.
+	objectCount++;//ökar objectCount för att nästa Sprite skall vara unik
+	X = posX; 
 	Y = posY;
+	
+	//sätter storleken på Sprite
 	sizeX = textureHeight;
 	sizeY = textureWidth;
-	sprite.x = 0;
-	sprite.y = 0;
-	sprite.w = textureHeight;
-	sprite.h = textureWidth;
-
-	position.x = X;
-	position.y = Y;
 	position.w = textureHeight;
 	position.h = textureWidth;
 	
 }
-
-
-Sprite::~Sprite()
+Sprite::~Sprite()//standard destruktor
 {
 }
 
-int Sprite::getX()
-{ 	
-	return X;
-};
-int Sprite::getY()
-{
-	return Y;
-};
-void Sprite::setX(int x)
-{
-	X= x;
-};
-void Sprite::setY(int y)
-{
-	Y = y;
-};
+/**/
 void Sprite::setSprite(int x, int y, int posX, int posY)
 {
 	sprite.x = x;
@@ -62,8 +35,6 @@ SDL_Rect Sprite::getPosition()
 {
 	position.x = X;
 	position.y = Y;
-	position.w = sizeX;
-	position.h = sizeY;
 	return position;
 };
 
