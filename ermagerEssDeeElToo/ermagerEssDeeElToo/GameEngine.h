@@ -23,6 +23,7 @@ public:
 	void removeActor(int);
 	void actions();
 	void update();
+	void end(){ endRun = true; }
 	
 	std::vector<Actor*> intersections(SDL_Rect);//needs implementation
 	
@@ -36,6 +37,7 @@ private:
 	bool down = false;
 	bool left = false;
 	bool right = false;
+	bool endRun = false;
 
 };
 

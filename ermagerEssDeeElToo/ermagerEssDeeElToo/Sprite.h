@@ -5,6 +5,7 @@
 class Sprite
 {
 public:
+	static int objectCount;
 	Sprite();
 	Sprite(int, int, int, int textureWidth);
 	~Sprite();
@@ -19,14 +20,13 @@ public:
 	SDL_Rect getPosition();
 	void setSprite(int, int, int, int);
 	int getID(){ return id; }
-	int getNextID(){ return nextID; }
+	int getNextID(){ objectCount; }
 	
 	
 	
 	
 private:
-	int id;
-	int nextID = 0;
+	int id = 0;
 	int X = 0;
 	int Y = 0;
 	int sizeX = 64;

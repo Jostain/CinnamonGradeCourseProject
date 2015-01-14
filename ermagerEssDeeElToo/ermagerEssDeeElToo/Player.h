@@ -6,6 +6,7 @@ class Player : public Actor
 public:
 	Player(int, int, int, int);
 	void act();
+	void checkCollision();
 	~Player();
 };
 

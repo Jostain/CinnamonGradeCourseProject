@@ -1,14 +1,15 @@
 #include "Sprite.h"
-
-
+#include <iostream>
+int Sprite::objectCount = 0;
 Sprite::Sprite()
 {
-	id = nextID;
-	nextID++;
-
+	
 }
 Sprite::Sprite(int posX, int posY, int textureHeight, int textureWidth)
 {
+	std::cout << objectCount;
+	id = objectCount;
+	objectCount++;
 	X = posX;
 	Y = posY;
 	sizeX = textureHeight;

@@ -47,6 +47,7 @@ GameEngine::GameEngine(const char* title, int height, int width)
 	}
 	FPSFont = TTF_OpenFont("c:/images/dirtyheadline.ttf", 128);
 }
+
 void GameEngine::add(Sprite* sprite, GameEngine* GE)
 {
 	spriteVector.push_back(sprite);
@@ -62,10 +63,11 @@ void GameEngine::removeSprite(int sprite)
 	int nextSprite = 0;
 	while (nextSprite < actorVector.size())
 	{
+		std::cout << sprite << std::endl;
 		if (spriteVector[nextSprite]->getID() == sprite)
-			spriteVector.erase(spriteVector.begin() + nextSprite - 1);
+			spriteVector.erase(spriteVector.begin() + nextSprite);
 			
-		nextSprite++;
+		break;
 	}
 }
 void GameEngine::removeActor(int actor)
@@ -73,10 +75,17 @@ void GameEngine::removeActor(int actor)
 	int nextActor = 0;
 	while (nextActor < actorVector.size())
 	{
+		std::cout << "test1" << std::endl;
+		if (spriteVector[nextActor]->getID() == actor){
+			
+			actorVector.erase(actorVector.begin() + nextActor);
+		
 		if (spriteVector[nextActor]->getID() == actor)
-			actorVector.erase(actorVector.begin() + nextActor - 1);
+			std::cout << "test2" << std::endl;
+		spriteVector.erase(spriteVector.begin() + nextActor);
 
-		nextActor++;
+			break;
+		}
 	}
 
 }
@@ -92,6 +101,7 @@ void GameEngine::actions()
 }
 void GameEngine::update()
 {
+	
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, Background_texture, NULL, NULL);
 	SDL_Rect dimension;
@@ -177,7 +187,7 @@ void GameEngine::run()
 		
 		
 		//Frames Per Second kontroll.
-		int tick = SDL_GetTicks() - begining;
+		int tick = SDL_GetTicks() - begining;//felstavat
 		
 		while (tick < 33)
 		{
@@ -190,7 +200,11 @@ void GameEngine::run()
 			frame = 0;
 		}
 		
-		
+		if (endRun == true)
+		{ 
+			program_is_running = false; 
+		}
+			
 	}
 }
 void GameEngine::setBackground(std::string path)
