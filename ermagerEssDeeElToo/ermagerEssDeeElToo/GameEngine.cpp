@@ -75,7 +75,6 @@ void GameEngine::removeActor(int actor)
 	int nextActor = 0;
 	while (nextActor < actorVector.size())
 	{
-		std::cout << nextActor << std::endl;
 		if (spriteVector[nextActor]->getID() == actor){
 			
 			actorVector.erase(actorVector.begin() + nextActor);

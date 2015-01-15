@@ -5,7 +5,7 @@ class Mob : public Actor
 {
 public:
 	Mob(int, int);
-	void act();
+	void act();//definierar bullets beteende
 	~Mob();
 private:
 	bool goingUp = true;

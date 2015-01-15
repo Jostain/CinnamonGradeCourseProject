@@ -1,12 +1,14 @@
 #include "Mob.h"
 
+/*Implementation av Actor. stoppar samtliga kulor och dödar en player vid träff*/
+
 Mob::Mob(int posX, int posY) : Actor(posX, posY, 32, 32)
 {
 	
 	setTeam(4);
 	setSprite(128, 6, 32, 32);
-	std::cout << getTeam() << std::endl;
 }
+
 void Mob::act()
 {
 	if (getY() <= 0)
